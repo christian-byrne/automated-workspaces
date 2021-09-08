@@ -139,13 +139,16 @@ def parse_workspaces():
     
 
 def convert_tuple_keys(dictionary):
-    """Convert json string keys to python tuples
+    """Convert json string keys to python tuples for semesters and
+    ints for course codes.
     
     """
     ret = {}
     for workspace, values in dictionary.items():
         new_name = tuple([workspace[:-4], int(workspace[-4:])])
-        ret[new_name] = values
+        ret[new_name] = {}
+        for k, v in values.items():
+            ret[new_name][int(k)] = v
     return ret
 
 
