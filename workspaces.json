@@ -1,0 +1,55 @@
+{
+  "fall2021": {
+    "243": {
+      "files": ["/home/bymyself/s/243/syllabus/calendar.pdf"],
+      "links": [
+        "https://teams.microsoft.com/_#/school/conversations/General?threadId=19:_s92xiCyj2cdHB6WlE1mqnU8uOHq0mq0nmEnOEKBO6g1@thread.tacv2&ctx=channel",
+        "https://d2l.arizona.edu/d2l/home/1069119",
+        "https://web.stanford.edu/class/cs103/tools/truth-table-tool/",
+        "http://logictools.org/prop.html"
+      ],
+      "dirs": ["/home/bymyself/s/243/"]
+    },
+    "129": {
+      "files": ["/home/bymyself/s/129/ch7/integration-table.pdf"],
+      "links": [
+        "https://teams.microsoft.com/_#/school/conversations/General?threadId=19:AJJLFAkZWqzMvQZ1KrNtyJ24NFzlY6YF8GglnP3oLFQ1@thread.tacv2&ctx=channel",
+        "https://app.groupme.com/chats",
+        "https://d2l.arizona.edu/d2l/le/content/1065012/viewContent/11338667/View",
+        "https://www.webassign.net/v4cgi/login.pl?courseKey=WA-production-1061695&eISBN=9781337827584",
+        "https://online.vitalsource.com/#/books/9781118748558?context_token=9d16fab0-e8f2-0139-eb10-129461d28e9b",
+        "https://d2l.arizona.edu/d2l/le/content/1048236/Home",
+        "https://d2l.arizona.edu/d2l/le/content/1065012/Home",
+        "https://www.wolframalpha.com/",
+        "https://www.desmos.com/calculator",
+        "https://www.symbolab.com/",
+        "https://reference.wolfram.com/language/tutorial/KeyboardShortcutListing.html",
+        "https://reference.wolfram.com/language/guide/MathematicalTypesetting.html",
+        "https://www.wolframcloud.com/"
+      ],
+      "dirs": ["/home/bymyself/s/129/"]
+    },
+    "210": {
+      "files": [],
+      "links": [
+        "https://piazza.com/class/ksi3px4i7oh5ed",
+        "https://d2l.arizona.edu/d2l/le/content/1081255/Home",
+        "https://arizona.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx?embedded=1#folderID=%\u0012cf83f35f-aafd-4f02-80ff-ad8d0047c3f0%22",
+        "https://www.w3schools.com/java/"
+      ],
+      "dirs": ["/home/bymyself/s/210/"]
+    },
+    "346": {
+      "files": [],
+      "links": [
+        "https://app.groupme.com/chats",
+        "https://lecturer-russ.appspot.com/courses/cs346/fall21/",
+        "https://discord.com/channels/855585027689807893/855585028178968579",
+        "https://d2l.arizona.edu/d2l/le/content/1048951/Home",
+        "https://arizona.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx?embedded=1#folderID=%\u0012ffadf22f-764c-4317-af6b-ad8b00fcd19c%22"
+      ],
+      "dirs": ["/home/bymyself/s/346/"]
+    }
+  },
+  "summer2021": { "110": "hi" }
+}

@@ -14,83 +14,7 @@ import time
 import argparse
 import os
 import webbrowser
-
-
-always = {
-    "links": [
-        "https://calendar.google.com/calendar/u/0/r/month"
-    ]
-}
-
-courses = {
-    ("fall", 2021): {
-        243: {
-            "files": [
-                "/home/bymyself/s/243/syllabus/calendar.pdf"
-            ],
-            "links": [
-                "https://teams.microsoft.com/_#/school/conversations/General?threadId=19:_s92xiCyj2cdHB6WlE1mqnU8uOHq0mq0nmEnOEKBO6g1@thread.tacv2&ctx=channel",
-                "https://d2l.arizona.edu/d2l/home/1069119",
-                "https://web.stanford.edu/class/cs103/tools/truth-table-tool/",
-                "http://logictools.org/prop.html"
-            ],
-            "dirs": [
-                "/home/bymyself/s/243/"
-            ]
-        },
-        129: {
-            "files": [
-                "/home/bymyself/s/129/ch7/integration-table.pdf"
-            ],
-            "links": [
-                "https://teams.microsoft.com/_#/school/conversations/General?threadId=19:AJJLFAkZWqzMvQZ1KrNtyJ24NFzlY6YF8GglnP3oLFQ1@thread.tacv2&ctx=channel",
-                "https://app.groupme.com/chats",
-                "https://d2l.arizona.edu/d2l/le/content/1065012/viewContent/11338667/View",
-                "https://www.webassign.net/v4cgi/login.pl?courseKey=WA-production-1061695&eISBN=9781337827584",
-                "https://online.vitalsource.com/#/books/9781118748558?context_token=9d16fab0-e8f2-0139-eb10-129461d28e9b",
-                "https://d2l.arizona.edu/d2l/le/content/1048236/Home",
-                "https://d2l.arizona.edu/d2l/le/content/1065012/Home",
-                "https://www.wolframalpha.com/",
-                "https://www.desmos.com/calculator",
-                "https://www.symbolab.com/",
-                "https://reference.wolfram.com/language/tutorial/KeyboardShortcutListing.html",
-                "https://reference.wolfram.com/language/guide/MathematicalTypesetting.html",
-                "https://www.wolframcloud.com/"
-            ],
-            "dirs": [
-                "/home/bymyself/s/129/"
-            ]
-        },
-        210: {
-            "files": [],
-            "links": [
-                "https://piazza.com/class/ksi3px4i7oh5ed",
-                "https://d2l.arizona.edu/d2l/le/content/1081255/Home",
-                "https://arizona.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx?embedded=1#folderID=%\22cf83f35f-aafd-4f02-80ff-ad8d0047c3f0%22",
-                "https://www.w3schools.com/java/"
-            ],
-            "dirs": [
-                "/home/bymyself/s/210/"
-            ]
-        },
-        346: {
-            "files": [],
-            "links": [
-                "https://app.groupme.com/chats",
-                "https://lecturer-russ.appspot.com/courses/cs346/fall21/",
-                "https://discord.com/channels/855585027689807893/855585028178968579",
-                "https://d2l.arizona.edu/d2l/le/content/1048951/Home",
-                "https://arizona.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx?embedded=1#folderID=%\22ffadf22f-764c-4317-af6b-ad8b00fcd19c%22"
-            ],
-            "dirs": [
-                "/home/bymyself/s/346/"
-            ]
-        }
-    },
-    ("summer", 2021): {
-        110: "hi"
-    }
-}
+import json
 
 
 def current_semester():
@@ -112,7 +36,7 @@ def current_semester():
     return tuple([season, year])
 
 
-def get_args():
+def get_args(courses):
     """Arg parser.
 
 
@@ -189,7 +113,7 @@ def apropos_filter(course, apropos, exclude, web_only=False):
     open_class(filtered_course, web_only=web_only)
 
 
-def one_course(options):
+def one_course(options, courses):
     """Wrapper for opening items for a single course. Repeated when
     opening multiple courses' content
 
@@ -202,19 +126,45 @@ def one_course(options):
         apropos_filter(course, options["apropos"], options["exclude"], options["web_only"])
 
 
+def parse_workspaces():
+    """Read json workspaces file and serialize to python dict.
+    
+    """
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    for fi in os.listdir(dir_path):
+        if "workspaces" in fi and "json" in fi:
+            with open(f"{dir_path}/{fi}") as json_file:
+                data = json.load(json_file)
+                return data
+    
+
+def convert_tuple_keys(dictionary):
+    """Convert json string keys to python tuples
+    
+    """
+    ret = {}
+    for workspace, values in dictionary.items():
+        new_name = tuple([workspace[:-4], int(workspace[-4:])])
+        ret[new_name] = values
+    return ret
+
+
 def main():
-    options = get_args()
-    print(options)
+    courses = convert_tuple_keys(parse_workspaces())
+
+    options = get_args(courses)
+    print(courses)
 
     # Default value (no arg) = open all classes for this semester.
     if options["course"] == 999:
         # Change semester each iteration and pass options object.
         for course in courses[options["semester"]].keys():
             options["course"] = course
-            one_course(options)
+            one_course(options, courses)
     else:
-        one_course(options)
+        one_course(options, courses)
 
 
 if __name__ == "__main__":
     main()
+
